@@ -81,5 +81,6 @@ batch, losses, periodic score against random), `config.json` and `latest.pt`.
   train/evaluate loop runs end to end.
 * The GPU code path (device selection, bf16 autocast) has **not** been run on a GPU. Everything here was developed and run on CPU.
 * The Stockfish opponent (`StockfishPlayer`) has **not** been run against a real engine binary; none was available where this was built.
+* One short CPU run (32 channels x 3 blocks, 32 simulations per move, 24 games per iteration, 25 iterations, about 22 minutes on 4 cores): policy loss fell from 3.33 to 3.11, but strength against a random opponent was not meaningfully above chance (score 0.50 to 0.70 over 20 games, intervals mostly including 0 Elo), and about 60% of self-play games ended at the 120-ply cap as draws. This confirms the loop runs and the losses move, not that the agent plays well. Real strength needs far more simulations, games and network capacity than this.
 * Playing strength depends heavily on the compute you give it (network size, simulations per move, games). Short CPU runs only show that the
   loop works; record your own `bench` and `eval` output for any claim about speed or strength.
