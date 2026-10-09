@@ -80,5 +80,6 @@ batch, losses, periodic score against random), `config.json` and `latest.pt`.
   virtual loss is fully undone; self-play targets have the correct sign for each side; the trainer can fit a fixed batch and masks illegal moves; the whole
   train/evaluate loop runs end to end.
 * The GPU code path (device selection, bf16 autocast) has **not** been run on a GPU. Everything here was developed and run on CPU.
+* The Stockfish opponent (`StockfishPlayer`) has **not** been run against a real engine binary; none was available where this was built.
 * Playing strength depends heavily on the compute you give it (network size, simulations per move, games). Short CPU runs only show that the
   loop works; record your own `bench` and `eval` output for any claim about speed or strength.
